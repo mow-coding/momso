@@ -77,7 +77,7 @@
 4. 커밋하고 브랜치를 push한 뒤 **PR을 연다** (제목 `[planning] 요약` 또는 자료 정리면 `[docs] 요약`, PR 템플릿 채우고 확인필요=김성균 체크).
 5. 병합/종료는 **김성균 검토 후**에 한다. AI가 공동작업자 PR을 임의로 병합하지 않는다.
 
-이 흐름은 `.claude/skills/organize-and-upload` 스킬로 자동화돼 있다 — "정리해서 올려줘"류 요청에 이 스킬을 쓴다.
+이 흐름은 `.claude/skills/go-github` 스킬(`/go-github`)로 자동화돼 있다 — "정리해서 올려줘"류 요청에 이 스킬을 쓴다.
 
 ## 기획 Pull Request 체크리스트
 
