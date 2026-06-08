@@ -1,0 +1,43 @@
+name: Planning note
+description: 기획 아이디어, 사용자 흐름, figma 전달, codex 대화 요약을 남깁니다.
+title: "[planning] "
+labels: ["planning"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        서비스 공식 표기는 `momso`입니다.
+        기획 문서는 가능하면 `docs/planner/**`에 파일로도 남겨주세요.
+  - type: textarea
+    id: summary
+    attributes:
+      label: 요약
+      description: 무엇에 대한 기획인가요?
+    validations:
+      required: true
+  - type: textarea
+    id: user-flow
+    attributes:
+      label: 사용자 흐름
+      description: 사용자가 어떤 순서로 행동하나요?
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+  - type: input
+    id: figma
+    attributes:
+      label: figma 링크
+      description: 목업이 있으면 링크를 붙여주세요.
+  - type: textarea
+    id: questions
+    attributes:
+      label: 김성균에게 확인 받고 싶은 것
+      description: 개발자가 답해야 할 질문을 적어주세요.
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 체크리스트
+      options:
+        - label: 서비스 이름을 `momso`로 표기했습니다.
+        - label: 관련 문서를 `docs/planner/**`에 남겼거나 남길 예정입니다.

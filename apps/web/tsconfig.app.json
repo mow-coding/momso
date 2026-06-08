@@ -24,5 +24,12 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "components", "features", "stores"]
+  "include": [
+    "src",
+    "components",
+    "features",
+    "stores",
+    "../../packages/schema/src",
+    "../../packages/runtime/src"
+  ]
 }

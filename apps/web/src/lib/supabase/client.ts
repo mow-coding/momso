@@ -1,21 +1,26 @@
 import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabasePublishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+import { getAppEnv } from '../env'
+import type { Database } from './database'
 
 let browserClient:
-  | ReturnType<typeof createClient>
+  | ReturnType<typeof createClient<Database>>
   | null = null
 
 export function getSupabaseBrowserClient() {
-  if (!supabaseUrl || !supabasePublishableKey) {
-    throw new Error(
-      'Supabase environment variables are missing. Fill in VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY in the root .env file.',
-    )
-  }
+  const env = getAppEnv()
 
   if (!browserClient) {
-    browserClient = createClient(supabaseUrl, supabasePublishableKey)
+    browserClient = createClient<Database>(
+      env.VITE_SUPABASE_URL,
+      env.VITE_SUPABASE_PUBLISHABLE_KEY,
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true,
+        },
+      },
+    )
   }
 
   return browserClient

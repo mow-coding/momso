@@ -1,4 +1,4 @@
-import type { AuthorityGrade } from '../stores/workspaceSeed'
+import type { AuthorityGrade } from '@momso/schema'
 
 const badgeLabelMap: Record<AuthorityGrade, string> = {
   A: 'Anatomical',

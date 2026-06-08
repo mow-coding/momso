@@ -1,17 +1,17 @@
+import { inputModeCatalog, type InputMode } from '@momso/schema'
 import { NotionButton } from '../../components/NotionButton'
-import { useWorkspaceStore } from '../../stores/useWorkspaceStore'
-import { inputModeCatalog } from '../../stores/workspaceSeed'
 
 interface InputModePickerProps {
   collapsed?: boolean
+  inputMode: InputMode
+  onChange: (mode: InputMode) => void
 }
 
 export function InputModePicker({
   collapsed = false,
+  inputMode,
+  onChange,
 }: InputModePickerProps) {
-  const inputMode = useWorkspaceStore((state) => state.inputMode)
-  const setInputMode = useWorkspaceStore((state) => state.setInputMode)
-
   return (
     <div className="flex flex-col gap-2">
       {!collapsed && <p className="mono-label">Input Mode</p>}
@@ -21,7 +21,7 @@ export function InputModePicker({
             key={mode.id}
             tone={inputMode === mode.id ? 'active' : 'default'}
             className={collapsed ? 'min-w-[44px] justify-center px-0' : ''}
-            onClick={() => setInputMode(mode.id)}
+            onClick={() => onChange(mode.id)}
           >
             {collapsed ? mode.shortLabel : mode.label}
           </NotionButton>

@@ -29,6 +29,14 @@ docs/product/philosophy/source-archive/20260602_yoodonghwan_docx/
 ```text
 docs/planner/briefs/20260602_momso_web25_user_owned_recording_strategy.md
 docs/planner/codex-sessions/20260602_web25_data_sovereignty_research_log.md
+docs/product/philosophy/20260603_momso_web25_adaptive_archiving_bm_baseline.md
+```
+
+## 기준 문서
+
+```text
+docs/product/philosophy/20260602_momso_dual_design_philosophy_baseline.md
+docs/product/philosophy/20260603_momso_web25_adaptive_archiving_bm_baseline.md
 ```
 
 ## 외부 표현 규칙
