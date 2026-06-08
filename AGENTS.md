@@ -14,6 +14,17 @@
 - 공동작업자가 "최근 업데이트를 내려받아줘", "김성균이 올린 리서치/회의 준비 사항을 확인해줘", "금요일 회의 준비 사항을 봐줘"라고 말하면 먼저 `docs/support-programs/inbodylike-2026/HANDOFF.md`를 읽는다.
 - 제품 기획 초안은 `docs/planner/**`, 합의된 제품 방향은 `docs/product/**`, 개발/인프라 문서는 `docs/development/**`에 둔다.
 
+## 파일 배치 규칙 (공동작업자·AI 필독 — 어기지 말 것)
+
+- **저장소 루트에 자료 폴더를 새로 만들지 않는다.** `NN_한글이름/`(예: `04_발표준비/`) 같은 번호 폴더를 루트에 두는 것 금지. 루트는 코드/설정 전용.
+- 지원사업·공모전·회의록·리서치·행정·발표 자료는 **반드시** `docs/support-programs/inbodylike-2026/**` 아래 알맞은 폴더에 넣는다:
+  - 리서치·시장조사·근거 → `research/`
+  - 사업계획서·지원서·발표 원고 → `admin/applications/`
+  - 내부 회의록 → `meetings/internal/` · 파트너/멘토/자문 회의 → `meetings/partners/`
+  - 문의 → `admin/inquiries/` · 일정·마감 → `admin/schedules/`
+- 서로 링크된 여러 파일은 `YYYYMMDD_영문슬러그/` 하위폴더로 묶고, 그 상위 폴더 `README.md` 색인 표에 한 줄 추가한다.
+- 어디 둘지 모르면 **루트에 임시로라도 두지 말고**, 각 폴더의 `README.md`와 이 규칙을 먼저 확인한다.
+
 ## Git 안전 규칙
 
 - `git status --short`로 현재 변경사항을 먼저 확인한다.
