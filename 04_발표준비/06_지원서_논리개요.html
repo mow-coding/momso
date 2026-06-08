@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>momso × InBodyLIKE — 지원서 논리 개요</title>
+<style>
+  :root{
+    --ink:#163F38; --green:#2E6657; --sage:#7FA899; --sagelt:#DDE9E3;
+    --mist:#F3F6F4; --gold:#C8A04A; --body:#2A332F; --mute:#6F7E78;
+    --amber:#B5852A; --amberbg:#FBF3DF; --rose:#A2553F; --rosebg:#F7E9E4;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#EDF1EE;color:var(--body);
+    font-family:"Malgun Gothic","맑은 고딕","Noto Sans KR",sans-serif;line-height:1.6;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 18px 80px;}
+  /* header */
+  header{background:var(--ink);color:#fff;padding:46px 0 38px;}
+  header .wrap{padding-top:0;padding-bottom:0;}
+  .kicker{color:var(--gold);font-weight:700;letter-spacing:2px;font-size:13px;}
+  h1{margin:8px 0 6px;font-size:34px;letter-spacing:-.5px;}
+  .sub{color:var(--sagelt);font-size:15px;}
+  .meta{color:var(--sage);font-size:12.5px;margin-top:14px;}
+  /* flow */
+  .flow{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 6px;}
+  .flow .step{flex:1 1 0;min-width:96px;background:#fff;border-radius:10px;padding:12px 10px;text-align:center;
+    box-shadow:0 2px 7px rgba(22,63,56,.10);font-weight:700;font-size:13.5px;color:var(--ink);position:relative;}
+  .flow .step span{display:block;font-size:11px;color:var(--mute);font-weight:500;margin-top:3px;}
+  .flow .step.hl{background:var(--ink);color:#fff;}
+  .flow .step.hl span{color:var(--sagelt);}
+  /* sections */
+  section{background:#fff;border-radius:14px;padding:24px 26px;margin:18px 0;box-shadow:0 2px 10px rgba(22,63,56,.07);}
+  .sec-no{display:inline-block;background:var(--ink);color:#fff;width:30px;height:30px;line-height:30px;
+    text-align:center;border-radius:50%;font-weight:700;font-size:14px;margin-right:8px;}
+  h2{font-size:21px;color:var(--ink);margin:0 0 4px;display:flex;align-items:center;}
+  h2 .tag{font-size:11.5px;color:var(--gold);font-weight:700;letter-spacing:1.5px;margin-left:10px;}
+  .lead{color:var(--mute);font-size:13.5px;margin:2px 0 14px;}
+  .pt{margin:14px 0;padding-left:14px;border-left:3px solid var(--sagelt);}
+  .pt b{color:var(--ink);}
+  /* source badge */
+  .src{display:inline-flex;flex-wrap:wrap;gap:4px 10px;margin-top:6px;font-size:11.5px;
+    background:var(--mist);border:1px solid var(--sagelt);border-radius:7px;padding:5px 9px;color:var(--green);
+    font-family:Consolas,"D2Coding",monospace;line-height:1.45;}
+  .src .d{color:var(--gold);font-weight:700;}
+  .src .p{color:var(--mute);}
+  /* motive cards */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:6px;}
+  .card{background:var(--mist);border-radius:10px;padding:14px 16px;}
+  .card h4{margin:0 0 6px;color:var(--ink);font-size:15px;}
+  .card p{margin:0 0 8px;font-size:13.5px;}
+  /* diff */
+  .diff section,section.diff{background:linear-gradient(180deg,#fffdf6,#fff);}
+  table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px;}
+  th,td{text-align:left;padding:8px 9px;border-bottom:1px solid #E6ECE8;vertical-align:top;}
+  th{background:var(--ink);color:#fff;font-size:12.5px;}
+  tr:nth-child(even) td{background:var(--mist);}
+  .core{background:var(--ink);color:#fff;border-radius:10px;padding:14px 18px;margin-top:14px;font-size:15.5px;font-weight:600;}
+  .core b{color:var(--gold);}
+  /* weak */
+  section.weak{background:var(--amberbg);}
+  section.weak h2{color:var(--amber);}
+  .wbox{background:#fff;border-left:4px solid var(--amber);border-radius:8px;padding:11px 14px;margin:10px 0;font-size:13.5px;}
+  .wbox b{color:var(--rose);}
+  .criteria{background:#fff;border-radius:8px;padding:11px 14px;margin-top:8px;font-size:13px;color:var(--green);}
+  /* misc */
+  .note{font-size:12px;color:var(--mute);margin-top:10px;}
+  .vision{background:var(--sagelt);border-radius:10px;padding:12px 16px;margin-top:10px;font-size:15px;color:var(--ink);font-weight:600;}
+  .pill{display:inline-block;background:var(--sagelt);color:var(--green);border-radius:20px;padding:3px 11px;font-size:12px;margin:3px 4px 0 0;}
+  footer{color:var(--mute);font-size:12px;text-align:center;margin-top:30px;}
+  @media print{body{background:#fff;}section,.flow .step{box-shadow:none;border:1px solid #E0E7E3;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">InBodyLIKE 2026 · 지원서 논리 개요 (fork · 출처 중심)</div>
+    <h1>momso — 수업의 맥락을 기록하다</h1>
+    <div class="sub">인바디는 몸의 <b>스펙</b>을, momso는 수업의 <b>맥락</b>을 기록한다.</div>
+    <div class="meta">📅 2026-06-08 · 논리의 원본은 git 저장소(github.com/mow-coding/momso)의 회의록·리서치·전사본. 각 논리에 <b>파일명·경로·만든 날짜</b> 표기.</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="flow">
+    <div class="step">동기<span>가치가 사라진다</span></div>
+    <div class="step">문제<span>기록 계층 부재</span></div>
+    <div class="step hl">해결<span>강사 검수 HITL</span></div>
+    <div class="step hl">차별점<span>맥락+주권</span></div>
+    <div class="step">시장·BM<span>발레파킹</span></div>
+    <div class="step">팀<span>현장+기술</span></div>
+    <div class="step">인바디<span>앱 연동</span></div>
+  </div>
+
+  <!-- 0 동기 -->
+  <section>
+    <h2><span class="sec-no">0</span>동기 · 계기 <span class="tag">개요에 빠졌던 부분</span></h2>
+    <div class="lead">momso는 아이디어가 아니라 요가원 운영자의 세 가지 현장 체험에서 나왔다.</div>
+    <div class="cards">
+      <div class="card">
+        <h4>① '수련 수첩'의 실패</h4>
+        <p>수련생은 기록을 부담스러워했고, 운영자는 수십 명 피드백을 손으로 못 남겼으며, <b>수업 중 영감이 기록 시점에 휘발</b>됐다.</p>
+        <div class="src">📄 01_2026_modo_application_original.md <span class="p">📁 docs/notion-archive/momso-raw-20260526/</span> <span class="d">📅 2026-05-15</span></div>
+      </div>
+      <div class="card">
+        <h4>② 외국인 수련생 AI 리포트 (씨앗)</h4>
+        <p>수업 후 AI 정리 PDF를 보냈더니 "수업 감각을 복기해 통증이 호전"·번역 리포트가 국경 넘는 연결 도구가 됐다.</p>
+        <div class="src">📄 @2026년 5월 13일 회의 ….md <span class="p">📁 docs/notion-archive/official-export-20260526-relevant/</span> <span class="d">📅 2026-05-13</span></div>
+      </div>
+      <div class="card">
+        <h4>③ 리뷰가 증명한 통점</h4>
+        <p>리뷰 123건 분석에서 고객은 "몸을 다시 배운다·통증이 줄었다·내 몸의 문제를 알게 됐다"를 반복 — 문제의식의 객관 근거.</p>
+        <div class="src">📄 @2026년 5월 8일 온라인 창구 리뷰 분석 ….md <span class="p">📁 docs/notion-archive/official-export-20260526-relevant/</span> <span class="d">📅 2026-05-08</span></div>
+      </div>
+    </div>
+    <div class="vision">동기 한 줄 — "수업에서 분명히 생긴 가치가, 끝나면 사라진다. 그걸 붙잡는다."</div>
+  </section>
+
+  <!-- 1 정의 -->
+  <section>
+    <h2><span class="sec-no">1</span>정의 <span class="tag">POSITIONING</span></h2>
+    <div class="pt"><b>헤드라인(심사자용):</b> 수업에서 사라지는 말·교정·감각을 <b>강사가 검수해 개인 수련 기록으로</b> 남긴다.
+      <div class="src">📄 20260527_momso_macro_positioning.md <span class="p">📁 docs/support-programs/inbodylike-2026/research/</span> <span class="d">📅 2026-05-27</span></div></div>
+    <div class="pt"><b>비전(동환님 언어):</b> 그렇게 쌓이면 momso는 내 몸을 가장 잘 아는 '세컨드 바디'가 된다.
+      <div class="src">📄 20260526_momso_deep_research_addendum.md <span class="p">📁 …/research/</span> <span class="d">📅 2026-05-26</span></div></div>
+    <div class="pt"><b>아닌 것:</b> <span class="pill">요가원 CRM</span><span class="pill">예약·결제앱</span><span class="pill">웰니스 패스</span><span class="pill">AI 회의록앱</span><span class="pill">인바디 장비판매</span></div>
+  </section>
+
+  <!-- 2 문제 -->
+  <section>
+    <h2><span class="sec-no">2</span>문제 <span class="tag">PROBLEM</span></h2>
+    <div class="pt"><b>통점:</b> 수업의 핵심(말·교정·감각)이 끝나면 휘발 → 수련생·지도자 사이 소통 장벽. 소규모 사업장이라 운영자가 한 명 한 명을 다 기억 못 한다.
+      <div class="src">📄 @2026년 5월 8일 온라인 창구 리뷰 분석 ….md <span class="p">📁 docs/notion-archive/official-export-20260526-relevant/</span> <span class="d">📅 2026-05-08</span></div></div>
+    <div class="pt"><b>핵심 프레임 — 기록 계층 부재:</b> 요가·웰니스는 비정형·블랙박스라 '기록 계층'이 통째로 비어 있다.
+      <div class="src">📄 20260526_lunch_tiro_meeting_notes.md <span class="p">📁 …/meetings/internal/</span> <span class="d">📅 2026-05-26</span></div></div>
+    <div class="pt"><b>기존 도구의 공백:</b> CRM=예약·결제 / 예약앱=수업 접근 / 전사앱=음성→글 / 인바디=몸 수치. 수업 안의 언어·피드백·감각은 아무도 기록 안 한다.
+      <div class="src">📄 20260526_external_competitor_market_research.md <span class="p">📁 …/research/</span> <span class="d">📅 2026-05-26</span></div></div>
+  </section>
+
+  <!-- 3 해결 -->
+  <section>
+    <h2><span class="sec-no">3</span>해결 <span class="tag">SOLUTION · HITL</span></h2>
+    <div class="pt"><b>흐름:</b> 녹음 → AI 전사·요약 <i>초안</i> → <b>강사 검수</b>(공유/내부/보류/제외) → 검수본만 개인 리포트 발행 → 다음 수업 맥락으로 환류.
+      <div class="src">📄 20260603_inbodylike_prd_v1_meeting_grounded.md <span class="p">📁 docs/planner/briefs/</span> <span class="d">📅 2026-06-03</span></div></div>
+    <div class="pt"><b>HITL(사람 검수)이 핵심:</b> AI는 초안만·강사가 확정, 원본 비공개·검수본만 공유, 수련생 무단 녹음 금지.
+      <div class="src">📄 20260529_yoodonghwan_domain_concerns_product_strategy.md <span class="p">📁 …/research/</span> <span class="d">📅 2026-05-29</span></div></div>
+    <div class="pt"><b>데이터 3계층:</b> raw(원본·비공개) → metadata(초점·RAG) → shareable(강사 확정만).
+      <div class="src">📄 20260603_app_function_bm_valet_summary.md <span class="p">📁 …/meetings/tiro-archive/</span> <span class="d">📅 2026-06-03</span></div></div>
+    <div class="pt"><b>지금 작동:</b> 모바일 웹앱 데모(강사용 5탭·수련생용 4탭·발행 게이트·면책) — momso.vercel.app.
+      <div class="src">📄 InbodylikePrototype.tsx <span class="p">📁 apps/web/src/prototype/</span> <span class="d">📅 git 추가 2026-06-02~03</span></div></div>
+  </section>
+
+  <!-- 4 차별점 -->
+  <section class="diff">
+    <h2><span class="sec-no">4</span>차별점 <span class="tag">★ WHY momso</span></h2>
+    <table>
+      <tr><th>차별점</th><th>왜 강력한가</th><th>원본 · 날짜</th></tr>
+      <tr><td><b>강사 검수(HITL)</b></td><td>AI 회의록·자동요약과 결정적 차이 — AI는 초안만, 강사가 확정·발행</td><td>20260529_yoodonghwan_domain_concerns… · 2026-05-29</td></tr>
+      <tr><td><b>데이터 3계층 + 원본 비공개</b></td><td>노하우·타인정보 노출 통제(요가 도메인 특유 민감성)</td><td>20260603_app_function_bm_valet_summary · 2026-06-03</td></tr>
+      <tr><td><b>발레파킹 / Web2.5 데이터 주권</b></td><td>데이터는 고객 소유·momso는 운영(BYOK) → 믿고 결제하는 신뢰 인프라</td><td>20260603_momso_web25_adaptive_archiving_bm_baseline · 2026-06-03</td></tr>
+      <tr><td><b>'수업 맥락'이라는 빈 시장</b></td><td>인바디(스펙)·CRM(예약)·전사(글) 사이 빈칸</td><td>20260527_momso_macro_positioning · 2026-05-27</td></tr>
+      <tr><td><b>정량(인바디) × 정성(수업맥락) 결합</b></td><td>둘을 잇는 건 momso뿐</td><td>20260528_inbodylike_business_plan_5_sections_draft · 2026-05-28</td></tr>
+    </table>
+    <div class="core">한 문장 차별화 — 기존 도구를 <b>대체</b>하지 않고 그 위에 얹히는, <b>강사 검수형 수업 맥락 기록 레이어 + 데이터 주권.</b></div>
+  </section>
+
+  <!-- 5 시장 -->
+  <section>
+    <h2><span class="sec-no">5</span>시장 · 수익 · 확장 <span class="tag">SCALE-UP</span></h2>
+    <div class="pt"><b>첫 시장:</b> 요가+필라테스+PT 프리미엄 참여형 스튜디오(1:1·소그룹). 요가원 단독 통계 약해 대리지표 추정.
+      <div class="src">📄 20260526_external_market_bm_validation.md <span class="p">📁 …/research/</span> <span class="d">📅 2026-05-26</span></div></div>
+    <div class="pt"><b>BM:</b> B2B 월 30만(프리미엄 패키지일 때 방어) + B2C 월 5~7천(개인 기록권). 발레파킹 구조.
+      <div class="src">📄 20260529_inbodylike_pitch_deck_text_only_v3.md <span class="p">📁 …/admin/applications/</span> <span class="d">📅 2026-05-29</span></div></div>
+    <div class="pt"><b>매출:</b> 발표 기준 3년차 500개 = 20.4~26.4억. <b>"연 60억"은 1,000개+유료 30명 공격 시나리오로만.</b>
+      <div class="src">📄 20260526_bm_assumption_correction_summary.md <span class="p">📁 …/research/</span> <span class="d">📅 2026-05-26</span></div></div>
+    <div class="pt"><b>확장:</b> 인바디 앱·삼성헬스 연동 + 검수 리포트 바이럴 + 가정용 인바디 보유 소비자까지(요가 → 몸 관심층 전체).
+      <div class="src">📄 20260606_tiro_5JwBLFcHxry69_bassoon_20260606134645_transcript.md <span class="p">📁 …/tiro-archive/private-raw/</span> <span class="d">📅 2026-06-06</span></div></div>
+  </section>
+
+  <!-- 6 팀 -->
+  <section>
+    <h2><span class="sec-no">6</span>팀 <span class="tag">TEAM</span></h2>
+    <div class="pt"><b>역할:</b> 유동환(요가 도메인·현장 PoC·연희동 네트워크) + 김성균(전략·기술·투자 설계) 50:50. 요가 수업은 용어·개인정보가 민감해 현장+기술이 동시에 필요.
+      <div class="src">📄 20260528_inbodylike_business_plan_5_sections_draft.md <span class="p">📁 …/admin/applications/</span> <span class="d">📅 2026-05-28</span></div></div>
+    <div class="pt"><b>부족:</b> 영업 매니저·개발자(투자 후 채용). 빅블루 실적 = 연희 요가 위크 1,677명(정산 기준, 공개 보고서)·리뷰 123건·공개 분석상 리뷰 밀도 2위/채움률 93.0%.
+      <div class="src">📄 20260605_tiro_Ri8DEwEV3We23_bassoon_20260605135908_transcript.md <span class="p">📁 …/tiro-archive/private-raw/</span> <span class="d">📅 2026-06-05</span></div></div>
+  </section>
+
+  <!-- 7 인바디 -->
+  <section>
+    <h2><span class="sec-no">7</span>인바디 협업 <span class="tag">PARTNERSHIP</span></h2>
+    <div class="pt"><b>인바디가 얻는 것:</b> 미점유 시장 요가·웰니스 진입 통로. ⚠️ momso는 인바디 없이도 작동 → 인바디는 "전부가 아니라 <i>첫</i> 정량 데이터 파트너".
+      <div class="src">📄 20260526_inbody_integration_feasibility_research.md <span class="p">📁 …/research/</span> <span class="d">📅 2026-05-26</span></div></div>
+    <div class="pt"><b>연동(최신 합의):</b> 기기 직결이 아니라 인바디 <b>앱</b> 연동(측정 통합·센터 찾기). 공식 API는 계약·승인 필요(즉시연동 아님) → 초기엔 결과지 업로드.
+      <div class="src">📄 20260606_tiro_5JwBLFcHxry69_bassoon_20260606134645_transcript.md <span class="p">📁 …/tiro-archive/private-raw/</span> <span class="d">📅 2026-06-06</span></div></div>
+    <div class="pt"><b>요청:</b> 8~12주 공동 PoC + 데이터 해석/안전표현 멘토링 + 리포트 UX 공동검토.
+      <div class="src">📄 20260528_inbodylike_business_plan_5_sections_draft.md <span class="p">📁 …/admin/applications/</span> <span class="d">📅 2026-05-28</span></div></div>
+  </section>
+
+  <!-- 8 약점 -->
+  <section class="weak">
+    <h2><span class="sec-no">8</span>논리가 부족한 곳 <span class="tag">보강 필요</span></h2>
+    <div class="wbox"><b>W1 · 첫 시장 미결</b> — 인바디는 필라테스에 분포 ↔ 유동환은 요가 도메인. 기준 미확정. <span class="note">(충돌: inbody_feasibility 2026-05-26 ↔ domain_concerns 2026-05-29)</span></div>
+    <div class="wbox"><b>W2 · 인바디 연동 미검증</b> — "앱 연동" 방향은 6/6 합의됐으나 공식 API는 계약·승인 필요·실연동 안 됨.</div>
+    <div class="wbox"><b>W3 · 프로토타입=데모만</b> — 저장소·전사·인바디 실연동은 PoC 검증 가설. <span class="note">(prd_v1 2026-06-03)</span></div>
+    <div class="wbox"><b>W4 · BM 숫자=추정·대리지표</b> — 요가원 단독 통계 부재, 60억은 공격 시나리오. <span class="note">(bm_assumption_correction 2026-05-26)</span></div>
+    <div class="wbox"><b>W5 · 팀 공백(영업·개발자)</b> — 두 명만으론 한계, 채용은 투자 후. <span class="note">(6/5 바순 transcript)</span></div>
+    <div class="wbox"><b>W6 · [가정] 미검증 지표</b> — 전환율·해지율·CAC·런웨이 데이터 없음.</div>
+    <div class="criteria"><b>보강 기준:</b> W1~W2 = 오늘 자문·성균 협의로 결정 · W3~W4 = "PoC 검증 가설/추정"으로 정직 표기 · W5 = 투자→채용 로드맵 · W6 = PoC 기간 실측.</div>
+  </section>
+
+  <footer>
+    momso × InBodyLIKE · 지원서 논리 개요 (fork) · 2026-06-08 · 상세본: 06_지원서_논리개요.md<br>
+    ⚠️ tiro-archive/private-raw 원문은 사적 대화 포함 — private repo 전제, 공개 시 제거.
+  </footer>
+
+</div>
+</body>
+</html>
