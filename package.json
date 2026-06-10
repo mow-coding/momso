@@ -2,28 +2,23 @@
   "name": "momso",
   "private": true,
   "workspaces": [
-    "apps/web",
-    "packages/*"
+    "apps/web"
   ],
   "scripts": {
     "dev": "npm run dev --workspace apps/web",
     "build": "npm run build --workspace apps/web",
     "lint": "npm run lint --workspace apps/web",
-    "test": "npm run test --workspace apps/web",
-    "test:watch": "npm run test:watch --workspace apps/web",
-    "test:e2e": "playwright test",
     "supabase:init": "supabase init",
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
     "supabase:status": "supabase status",
     "supabase:login": "supabase login",
     "supabase:db:reset": "supabase db reset",
-    "supabase:db:push": "supabase db push",
     "vercel:dev": "npx vercel dev",
     "vercel:link": "npx vercel link --repo"
   },
   "devDependencies": {
-    "@playwright/test": "^1.58.1",
+    "pptxgenjs": "^4.0.1",
     "supabase": "^2.84.0"
   }
 }

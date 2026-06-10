@@ -6,6 +6,12 @@
   "devCommand": "npm run dev",
   "outputDirectory": "apps/web/dist",
   "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
