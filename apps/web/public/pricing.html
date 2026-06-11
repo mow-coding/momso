@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>momso 요금제</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  :root {
+    --orange: #b45309;
+    --orange-hover: #9a4708;
+    --orange-tint: #fdf6ef;
+    --ink: #191512;
+    --muted: #6b6660;
+    --faint: #9b958e;
+    --line: #e8e4df;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: #ffffff;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  .section { max-width: 1180px; margin: 0 auto; padding: 72px 24px 96px; }
+  .eyebrow {
+    text-align: center; color: var(--orange); font-weight: 700; font-size: 14px;
+    letter-spacing: 0.08em; margin-bottom: 14px;
+  }
+  h1 { text-align: center; font-size: 38px; font-weight: 800; letter-spacing: -0.02em; }
+  .sub { text-align: center; color: var(--muted); font-size: 16.5px; margin-top: 14px; }
+  .toggle-wrap { display: flex; justify-content: center; margin: 36px 0 44px; }
+  .toggle {
+    display: inline-flex; background: #f3f0ec; border-radius: 999px; padding: 5px; gap: 4px;
+  }
+  .toggle button {
+    border: 0; background: transparent; padding: 9px 22px; border-radius: 999px;
+    font: inherit; font-size: 14.5px; font-weight: 600; color: var(--muted); cursor: pointer;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .toggle button.active { background: #ffffff; color: var(--ink); box-shadow: 0 1px 4px rgba(25,21,18,.12); }
+  .toggle .save {
+    background: var(--orange-tint); color: var(--orange); font-size: 12px; font-weight: 700;
+    padding: 3px 8px; border-radius: 999px;
+  }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: stretch; }
+  .card {
+    position: relative; border: 1px solid var(--line); border-radius: 18px;
+    padding: 30px 26px 28px; background: #fff; display: flex; flex-direction: column;
+    transition: box-shadow .2s ease;
+  }
+  .card:hover { box-shadow: 0 10px 30px rgba(25,21,18,.07); }
+  .card.featured {
+    border: 2px solid var(--orange); background: var(--orange-tint);
+    box-shadow: 0 14px 40px rgba(180,83,9,.13);
+  }
+  .badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--orange); color: #fff; font-size: 12.5px; font-weight: 700;
+    padding: 5px 14px; border-radius: 999px; white-space: nowrap;
+  }
+  .plan { font-size: 19px; font-weight: 700; }
+  .persona { color: var(--faint); font-size: 13.5px; margin-top: 5px; }
+  .price-row { margin-top: 24px; display: flex; align-items: baseline; gap: 5px; min-height: 44px; }
+  .price { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; }
+  .per { color: var(--muted); font-size: 14.5px; font-weight: 500; }
+  .price-note { color: var(--faint); font-size: 13px; margin-top: 9px; line-height: 1.55; min-height: 40px; }
+  .cta {
+    margin-top: 20px; display: block; width: 100%; text-align: center; text-decoration: none;
+    border-radius: 11px; padding: 12px 0; font-size: 15px; font-weight: 700; cursor: pointer;
+    border: 1.5px solid var(--orange); color: var(--orange); background: #fff;
+    transition: background .15s ease, color .15s ease;
+  }
+  .cta:hover { background: var(--orange-tint); }
+  .cta.solid { background: var(--orange); color: #fff; }
+  .cta.solid:hover { background: var(--orange-hover); }
+  .divider { border: 0; border-top: 1px solid var(--line); margin: 24px 0 18px; }
+  .featured .divider { border-color: #ecd9c3; }
+  .inherit { color: var(--faint); font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+  ul.features { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  ul.features li { display: flex; gap: 9px; font-size: 14px; color: #46413b; line-height: 1.45; }
+  ul.features li svg { flex: 0 0 17px; margin-top: 1.5px; }
+  .fineprint { color: var(--faint); font-size: 12px; margin-top: 12px; }
+  .foot { text-align: center; color: var(--faint); font-size: 13.5px; margin-top: 44px; }
+  @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main class="section">
+  <p class="eyebrow">요금제</p>
+  <h1>요가원에 맞는 플랜을 선택하세요</h1>
+  <p class="sub">모든 플랜에 수업 녹음 · 강사 검수 · 리포트 발행이 포함됩니다</p>
+
+  <div class="toggle-wrap">
+    <div class="toggle" role="tablist">
+      <button id="btnMonthly" class="active" type="button">월간 결제</button>
+      <button id="btnYearly" type="button">연간 결제 <span class="save">20% 할인</span></button>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <p class="plan">프리</p>
+      <p class="persona">체험과 가벼운 기록</p>
+      <div class="price-row"><span class="price">0원</span><span class="per">/월</span></div>
+      <p class="price-note">언제까지나 무료</p>
+      <a class="cta" href="#">무료로 시작하기</a>
+      <hr class="divider" />
+      <ul class="features">
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>월 녹음 10회</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>수련생 10명</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>기록 보관 30일</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>기본 AI 검수 · 리포트</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <p class="plan">프로</p>
+      <p class="persona">1인 강사 · 소규모 클래스</p>
+      <div class="price-row"><span class="price" data-monthly="99,000원" data-yearly="79,000원">99,000원</span><span class="per">/월</span></div>
+      <p class="price-note"><span data-monthly="연간 결제 시 월 79,000원" data-yearly="월간 결제 시 월 99,000원">연간 결제 시 월 79,000원</span><br />BYOK/BYOC 월 69,000원</p>
+      <a class="cta" href="#">프로 시작하기</a>
+      <hr class="divider" />
+      <ul class="features">
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>월 녹음 45회</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>수련생 40명</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>스케줄 · 회원 명단 관리</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>BYOK/BYOC 요금 선택</li>
+      </ul>
+    </div>
+
+    <div class="card featured">
+      <span class="badge">가장 인기</span>
+      <p class="plan">맥스</p>
+      <p class="persona">본격 운영 요가원</p>
+      <div class="price-row"><span class="price" data-monthly="198,000원" data-yearly="158,400원">198,000원</span><span class="per">/월</span></div>
+      <p class="price-note"><span data-monthly="연간 결제 시 월 158,400원" data-yearly="월간 결제 시 월 198,000원">연간 결제 시 월 158,400원</span><br />BYOK/BYOC 월 148,000원</p>
+      <a class="cta solid" href="#">맥스 시작하기</a>
+      <hr class="divider" />
+      <p class="inherit">프로의 모든 기능, 그리고</p>
+      <ul class="features">
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>녹음 무제한</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>수련생 무제한</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>스토리지 · AI 토큰 확장</li>
+      </ul>
+      <p class="fineprint">녹음 공정사용 월 120회 기준</p>
+    </div>
+
+    <div class="card">
+      <p class="plan">엔터프라이즈</p>
+      <p class="persona">다지점 · 프랜차이즈</p>
+      <div class="price-row"><span class="price" style="font-size:28px">맞춤 견적</span></div>
+      <p class="price-note">월 398,000원 부터</p>
+      <a class="cta" href="#">영업팀 문의</a>
+      <hr class="divider" />
+      <p class="inherit">맥스의 모든 기능, 그리고</p>
+      <ul class="features">
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>다지점 운영</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>전담 매니저</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>인바디 기기 연동</li>
+        <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4 10-10" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>사업자 공제 지원</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <p class="foot">BYOK/BYOC — 자체 AI 키·저장소를 연결해 쓰는 경우 적용되는 요금입니다.</p>
+</main>
+<script>
+  const btnM = document.getElementById('btnMonthly');
+  const btnY = document.getElementById('btnYearly');
+  function setMode(yearly) {
+    btnM.classList.toggle('active', !yearly);
+    btnY.classList.toggle('active', yearly);
+    document.querySelectorAll('[data-monthly]').forEach(el => {
+      el.textContent = yearly ? el.dataset.yearly : el.dataset.monthly;
+    });
+  }
+  btnM.addEventListener('click', () => setMode(false));
+  btnY.addEventListener('click', () => setMode(true));
+</script>
+</body>
+</html>
