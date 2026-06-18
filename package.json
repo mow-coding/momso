@@ -2,12 +2,14 @@
   "name": "momso",
   "private": true,
   "workspaces": [
-    "apps/web"
+    "apps/inbodylike-demo",
+    "apps/web",
+    "apps/mobile"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace apps/web",
-    "build": "npm run build --workspace apps/web",
-    "lint": "npm run lint --workspace apps/web",
+    "dev": "npm run dev --workspace apps/inbodylike-demo",
+    "build": "npm run build --workspace apps/inbodylike-demo",
+    "lint": "npm run lint --workspace apps/inbodylike-demo",
     "supabase:init": "supabase init",
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",

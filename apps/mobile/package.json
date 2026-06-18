@@ -1,0 +1,6 @@
+{
+  "name": "@momso/mobile",
+  "private": true,
+  "version": "0.0.0",
+  "description": "momso 모바일 앱 (Expo, Android+iOS 단일 코드베이스) — 예정"
+}
