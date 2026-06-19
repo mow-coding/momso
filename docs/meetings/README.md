@@ -1,15 +1,13 @@
 # meetings — 회의록
 
-momso가 쌓은 meetings — 회의록 모음. 각 문서는 표준 양식으로 정제·검수해 공개한 버전.
+momso가 쌓은 회의록 모음. 표준 양식으로 정제·검수해 공개한 버전.
 
 | 문서 | 한 줄 |
 |---|---|
 | `20260526_momso-pitch-direction-and-poc-plan.md` | 2026-05-26 · 몸소 피치 방향 정리 + 시연·PoC 계획 |
 | `20260527_b2c-record-share-positioning.md` | 2026-05-27 · 1단계 B2C 서비스는 "CRM"이 아니라 수업 기록/공유 서비스다 |
-| `20260529_momso_strategy_meeting.md` | 기록 계층과 공유 계층 분리 |
+| `20260529_momso_strategy_meeting.md` | 2026-05-29 · momso 제품 구조 정의 — 기록 계층과 공유 계층 분리 |
 | `20260529_professor-mentoring-rise-inbodylike.md` | 2026-05-29 · 교수 멘토링: RISE 발표 피드백을 InBodyLIKE 논리에 반영 |
-| `20260529_tiro-partnership-poc-meeting.md` | 2026-05-29 · Tiro 음성 처리 파트너십·PoC 협의 |
-| `20260529_tiro_b2b_technical_prep.md` | 2026-05-29 · Tiro B2B 기술 미팅 준비 |
 | `20260602_prototype_baseline.md` | 2026-06-02 · 프로토타입 개발 기준선 정리 |
 | `20260603_app-function-valet-bm.md` | 2026-06-03 · 앱 기능 정의와 발렛파킹 BM 정리 |
 | `20260603_momso-product-identity-decisions.md` | 2026-06-03 · momso 제품 정체성과 데이터 구조 결정 |
