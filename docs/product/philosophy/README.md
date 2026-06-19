@@ -27,8 +27,6 @@ docs/product/philosophy/source-archive/20260602_yoodonghwan_docx/
 김성균의 Web2.5 / 데이터 주권 방향은 현재 아래 문서에 정리되어 있다.
 
 ```text
-docs/planner/briefs/20260602_momso_web25_user_owned_recording_strategy.md
-docs/planner/codex-sessions/20260602_web25_data_sovereignty_research_log.md
 docs/product/philosophy/20260603_momso_web25_adaptive_archiving_bm_baseline.md
 ```
 

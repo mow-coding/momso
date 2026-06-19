@@ -7,7 +7,6 @@ body:
     attributes:
       value: |
         서비스 공식 표기는 `momso`입니다.
-        기획 문서는 가능하면 `docs/planner/**`에 파일로도 남겨주세요.
   - type: textarea
     id: summary
     attributes:
@@ -40,4 +39,3 @@ body:
       label: 체크리스트
       options:
         - label: 서비스 이름을 `momso`로 표기했습니다.
-        - label: 관련 문서를 `docs/planner/**`에 남겼거나 남길 예정입니다.

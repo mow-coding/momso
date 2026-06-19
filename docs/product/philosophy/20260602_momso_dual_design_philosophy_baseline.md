@@ -59,8 +59,6 @@ momso에 반영된 구조:
 현재 정리 문서:
 
 ```text
-docs/planner/briefs/20260602_momso_web25_user_owned_recording_strategy.md
-docs/planner/codex-sessions/20260602_web25_data_sovereignty_research_log.md
 ```
 
 제품 언어로 번역한 핵심:
