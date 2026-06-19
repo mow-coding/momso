@@ -11,16 +11,16 @@
 
 요가 수업 녹음 → Tiro 음성 처리 → 전사문 → 구간 요약 → momso 수업 리포트 템플릿 → 개인 수련 리포트 / 강사용 피드백 요약 / 업장 리텐션 리포트.
 
-Tiro 공식 문서 기준 처리 흐름은 `job 생성 → audio upload → upload-complete → polling → transcript/summary fetch`. 지원 형식 MP3·WAV·M4A·MP4, 제한 최대 500MB / 4시간. 따라서 60~90분 요가 수업은 문서상 처리 범위 안에 있다. (출처: Tiro Voice File Overview https://api-docs.tiro.ooo/voice-file/overview)
+Tiro 공식 문서 기준 처리 흐름은 `job 생성 → audio upload → upload-complete → polling → transcript/summary fetch`. 지원 형식 MP3·WAV·M4A·MP4, 제한 최대 500MB / 4시간. 따라서 60~90분 요가 수업은 문서상 처리 범위 안에 있다. (출처: Tiro Voice File Overview (Tiro 공식 API 문서))
 
 **미팅에서 확인할 기술 주제 7개**
 
 1. **긴 수업 녹음 처리** — 60~90분 수업의 권장 형식·샘플레이트·파일 크기, 처리 시간, 실패 시 재시도, rate limit.
 2. **요가 환경 소음** — 배경음악·호흡·매트/발걸음 소리·작은 목소리가 섞이는 환경. 핀마이크 필요 여부, 룸마이크 한 대로 충분한지, 음악 있는 수업 회피 여부, 강사/수련생 화자 분리(최소한 강사 발화만이라도 안정적으로) 가능 여부.
-3. **산스크리트어·요가 전문용어** (핵심) — 한국어 문장에 산스크리트어·영어·한국식 발음이 섞임. 도메인 단어장을 미리 넣어 정확도를 올리거나 요약 단계에서 표준 용어로 보정 가능한지. 문서상 `transcriptLocaleHints`는 최대 1개, 산스크리트어 전용 locale은 확인되지 않음. → "한국어 수업에 섞인 전문용어를 어떻게 다루느냐"를 질문해야 한다. (출처: Tiro Supported Locales https://api-docs.tiro.ooo/fundamentals/supported-locales)
-4. **전사 결과 구조** — Tiro의 `Note`(컨테이너) 하위 `Paragraph`(전사+요약+타임스탬프), `NoteSummary`, `NoteDocument`(템플릿 문서). momso는 전체 transcript=원자료 보관, Paragraph=구간별 발화·요약, NoteSummary=한 페이지 요약, NoteDocument=수업 리포트 템플릿으로 매핑. Paragraph summary + custom NoteDocument 조합이 적절한지 확인. (출처: Tiro Note Data Model https://api-docs.tiro.ooo/fundamentals/note-data-model , Summary And Document https://api-docs.tiro.ooo/template-based-documents/summary-and-document)
+3. **산스크리트어·요가 전문용어** (핵심) — 한국어 문장에 산스크리트어·영어·한국식 발음이 섞임. 도메인 단어장을 미리 넣어 정확도를 올리거나 요약 단계에서 표준 용어로 보정 가능한지. 문서상 `transcriptLocaleHints`는 최대 1개, 산스크리트어 전용 locale은 확인되지 않음. → "한국어 수업에 섞인 전문용어를 어떻게 다루느냐"를 질문해야 한다. (출처: Tiro Supported Locales (Tiro 공식 API 문서))
+4. **전사 결과 구조** — Tiro의 `Note`(컨테이너) 하위 `Paragraph`(전사+요약+타임스탬프), `NoteSummary`, `NoteDocument`(템플릿 문서). momso는 전체 transcript=원자료 보관, Paragraph=구간별 발화·요약, NoteSummary=한 페이지 요약, NoteDocument=수업 리포트 템플릿으로 매핑. Paragraph summary + custom NoteDocument 조합이 적절한지 확인. (출처: Tiro Note Data Model (Tiro 공식 API 문서) , Summary And Document (Tiro 공식 API 문서))
 5. **momso 전용 리포트 템플릿** — 회의록이 아니라 `수업 흐름`, `주요 큐잉`, `반복 피드백`, `자세명`, `감각 언어`, `개인 리포트 후보`, `강사용 확인 필요` 섹션을 가진 커스텀 NoteDocument를 팀 단위로 만들어 API에서 호출 가능한지.
-6. **API·webhook·export** — 업로드 후 전사/요약 결과를 momso로 자동 회수(복붙 아님). polling vs webhook 중 PoC 적합 구성, JSON/Markdown export, API key 발급 조건, team/user key 차이, 완료 알림·webhook event 종류, 실패/재처리, PoC 사용량 한도. (출처: Tiro Webhooks Overview https://api-docs.tiro.ooo/webhooks/webhooks-overview)
+6. **API·webhook·export** — 업로드 후 전사/요약 결과를 momso로 자동 회수(복붙 아님). polling vs webhook 중 PoC 적합 구성, JSON/Markdown export, API key 발급 조건, team/user key 차이, 완료 알림·webhook event 종류, 실패/재처리, PoC 사용량 한도. (출처: Tiro Webhooks Overview (Tiro 공식 API 문서))
 7. **데이터·보안** — 수업 음성은 개인의 몸 상태·감각·호흡이 드러나는 민감 정보. 음성 원본·전사문·요약문 저장 위치와 보관 기간, 삭제 요청 프로세스, 모델 학습 미사용 보장, 국외 처리 여부, DPA/개인정보 처리 위탁 계약 가능 여부, 고객사 데이터 반출 가능 여부.
 
 **산스크리트어 이슈를 강조하는 이유** — 디테일 과시가 아니라 신뢰 문제다. `차투랑가` 같은 자세명이 틀리면 전사문은 대충 읽혀도 momso 리포트는 신뢰를 잃고, "오늘 어떤 흐름·피드백이 있었나"를 제대로 뽑기 어렵다. 미팅에서 도메인 단어장·후처리 보정·커스텀 템플릿으로 이 문제를 어디까지 해결할 수 있는지 반드시 확인한다.
@@ -58,8 +58,8 @@ Tiro 공식 문서 기준 처리 흐름은 `job 생성 → audio upload → uplo
 
 ## 연결
 
-- Tiro Voice File Overview: https://api-docs.tiro.ooo/voice-file/overview
-- Tiro Supported Locales: https://api-docs.tiro.ooo/fundamentals/supported-locales
-- Tiro Note Data Model: https://api-docs.tiro.ooo/fundamentals/note-data-model
-- Tiro Summary And Document: https://api-docs.tiro.ooo/template-based-documents/summary-and-document
-- Tiro Webhooks Overview: https://api-docs.tiro.ooo/webhooks/webhooks-overview
+- Tiro Voice File Overview: (Tiro 공식 API 문서)
+- Tiro Supported Locales: (Tiro 공식 API 문서)
+- Tiro Note Data Model: (Tiro 공식 API 문서)
+- Tiro Summary And Document: (Tiro 공식 API 문서)
+- Tiro Webhooks Overview: (Tiro 공식 API 문서)
