@@ -253,7 +253,7 @@ const studentArchiveStates = [
   ['외부 연결', '동의 후'],
 ]
 
-const studentShareUrl = '예시 링크: momso.vercel.app/r/harin-0602'
+const studentShareUrl = '예시 링크: momso-demo.vercel.app/r/harin-0602'
 
 const sampleStudentReportItems = [
   '오른발 접지와 내쉬는 호흡에서 골반 정렬을 함께 확인했습니다.',
