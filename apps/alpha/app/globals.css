@@ -1,0 +1,258 @@
+@import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
+@import 'tailwindcss';
+
+/* momso 알파 — Pretendard 단일 패밀리(한글+라틴) */
+
+@theme {
+  /* 중립 베이스 (데모와 동일) */
+  --color-body-bg: #ffffff;
+  --color-body-surface: #f7f7f7;
+  --color-body-border: #e9e9e8;
+  --color-body-text: #37352f;
+  --color-body-muted: #787774;
+
+  /* 데모 크래프트 팔레트 */
+  --color-accent: #e26d5c; /* 코랄 — 주 액센트 */
+  --color-accent-soft: #fbe8e3; /* 코랄 연한 배경 */
+  --color-accent-strong: #b0432f; /* 코랄 진한 텍스트 */
+  --color-navy: #1f3f5b; /* 네이비 — 보조(강사/내부) */
+  --color-navy-soft: #eef5fa;
+  --color-sage: #edf1ed; /* 세이지 — surface/hover */
+
+  --font-sans: 'Pretendard Variable', 'Pretendard', system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, 'Cascadia Mono', monospace;
+}
+
+:root {
+  color: #37352f;
+  background-color: #ffffff;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(226, 109, 92, 0.16);
+}
+
+@layer components {
+  .panel {
+    @apply rounded-[12px] border border-body-border bg-white;
+  }
+  .panel-muted {
+    @apply rounded-[12px] border border-body-border bg-body-surface;
+  }
+  .mono-label {
+    @apply text-[11px] font-medium tracking-[0.02em] text-body-muted;
+  }
+  .nav-item {
+    @apply flex w-full items-center gap-2 rounded-[6px] px-3 py-2 text-left text-sm text-body-text transition-colors;
+  }
+  .nav-item:hover {
+    background: var(--color-sage);
+  }
+  .nav-item-active {
+    background: var(--color-accent);
+    color: #ffffff;
+    font-weight: 600;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center rounded-[6px] px-3 py-2 text-sm font-medium transition-colors;
+  }
+  .btn-primary {
+    @apply text-white;
+    background: var(--color-accent);
+  }
+  .btn-primary:hover {
+    filter: brightness(0.96);
+  }
+  .btn-ghost {
+    @apply text-body-text;
+  }
+  .btn-ghost:hover {
+    background: var(--color-sage);
+  }
+
+  /* 검수 상태 칩 (데모 시맨틱 컬러) */
+  .pill-member {
+    @apply rounded-full px-2.5 py-1 text-[11px] font-semibold;
+    background: var(--color-accent-soft);
+    color: var(--color-accent-strong);
+  }
+  .pill-teacher {
+    @apply rounded-full px-2.5 py-1 text-[11px] font-semibold;
+    background: var(--color-navy-soft);
+    color: var(--color-navy);
+  }
+  .pill-excluded {
+    @apply rounded-full px-2.5 py-1 text-[11px] font-semibold;
+    background: #f3f4ef;
+    color: #626d78;
+  }
+
+  /* ───────────────────────────────────────────────────────────
+     momso 알파 — 합성 디자인 시스템 ADD (기존 클래스와 충돌 없음)
+     신규 색·신규 라운드·그림자 도입 금지(기존 @theme 토큰만).
+     ─────────────────────────────────────────────────────────── */
+
+  /* 섹션 헤더 — 14px/600 본문색(키커 금지). 카운트는 제목 옆 muted 인라인. */
+  .section-head {
+    @apply flex items-baseline justify-between gap-3;
+  }
+  .section-head-title {
+    @apply text-sm font-semibold text-body-text;
+  }
+  .section-head-count {
+    @apply text-sm font-normal text-body-muted;
+  }
+
+  /* 표준 리스트행(UploadView 패턴 승격) — 좌 제목 / 우 메타 1종 */
+  .list-row {
+    @apply flex items-center justify-between gap-3 rounded-[12px] border border-body-border bg-white p-3 text-sm;
+  }
+  .list-row-title {
+    @apply min-w-0 flex-1 truncate font-medium text-body-text;
+  }
+  .list-row-meta {
+    @apply shrink-0 text-[11px] font-medium tracking-[0.02em] text-body-muted;
+  }
+  .list-row-link {
+    @apply cursor-pointer transition-colors;
+  }
+  .list-row-link:hover {
+    background: var(--color-sage);
+  }
+  .list-row-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+
+  /* 폼 — 라벨(=mono-label 동치, eyebrow 아님: 컨트롤 바로 위) + 공통 입력 */
+  .field-label {
+    @apply block text-[11px] font-medium tracking-[0.02em] text-body-muted;
+  }
+  .field-input,
+  .field-select,
+  .field-area {
+    @apply mt-1 w-full rounded-[6px] border border-body-border bg-white px-3 py-2 text-sm text-body-text transition-colors;
+  }
+  .field-area {
+    @apply h-40 leading-relaxed;
+  }
+  .field-input::placeholder,
+  .field-area::placeholder {
+    @apply text-body-muted;
+  }
+  .field-input:focus,
+  .field-select:focus,
+  .field-area:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-soft);
+  }
+
+  /* 빈 상태 — 3종 공통 컨테이너. 일러스트·이모지 금지. */
+  .empty-state {
+    @apply rounded-[12px] border border-body-border bg-body-surface p-10;
+  }
+  .empty-state-tight {
+    @apply rounded-[12px] border border-body-border bg-body-surface p-6;
+  }
+  .empty-state-title {
+    @apply text-lg font-semibold leading-snug text-body-text;
+  }
+  .empty-state-body {
+    @apply text-sm leading-relaxed text-body-muted;
+  }
+  .empty-state-link {
+    @apply font-medium text-accent-strong underline underline-offset-2;
+  }
+
+  /* 시그니처 코랄 마이크로 밑줄/점 (Login 모티프) */
+  .accent-rule {
+    @apply block h-[3px] w-10 rounded-full;
+    background: var(--color-accent);
+  }
+  .accent-dot {
+    @apply inline-block h-1 w-1 rounded-full align-middle;
+    background: var(--color-accent);
+  }
+
+  /* 스탯 카드 — 큰 숫자(코랄 칠 금지) → 라벨 → 힌트 */
+  .stat-card {
+    @apply rounded-[12px] border border-body-border bg-white p-5;
+  }
+  .stat-value {
+    @apply text-2xl font-semibold text-body-text;
+  }
+  .stat-label {
+    @apply mt-1 text-sm font-medium text-body-text;
+  }
+  .stat-hint {
+    @apply text-[11px] text-body-muted;
+  }
+
+  /* 중립 메타 칩(비검수) — 파일종류·source·워크스페이스 등. */
+  .meta-chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-body-border px-2.5 py-1 text-[11px] text-body-muted;
+  }
+  .status-dot-published {
+    @apply inline-block h-1.5 w-1.5 rounded-full;
+    background: var(--color-accent);
+  }
+  .status-dot-draft {
+    @apply inline-block h-1.5 w-1.5 rounded-full;
+    background: var(--color-body-muted);
+  }
+
+  /* 무결성 출처·귀속 표식(네이비) — AI 단정 인접 필수. 데모는 비활성 hover. */
+  .source-tag {
+    @apply inline-flex items-center gap-1 rounded-[6px] px-1.5 py-0.5 text-[11px] font-medium;
+    color: var(--color-navy);
+    background: var(--color-navy-soft);
+  }
+
+  /* 세그먼트 탭 — 활성만 흰 surface 부각, 코랄 채움 아님 */
+  .seg-tab {
+    @apply rounded-[6px] px-2.5 py-1 text-[13px] text-body-muted transition-colors;
+  }
+  .seg-tab:hover {
+    background: var(--color-sage);
+  }
+  .seg-tab-active {
+    @apply bg-white font-medium text-body-text;
+    border: 1px solid var(--color-body-border);
+  }
+
+  /* 내비 우측 카운트 배지(store 실값, 0이면 렌더 안 함) */
+  .count-badge {
+    @apply ml-auto shrink-0 text-[11px] font-medium tabular-nums text-body-muted;
+  }
+  .nav-item-active .count-badge {
+    color: #ffffff;
+  }
+
+  /* 읽기형 본문 — 16px/leading-1.65, 코랄 칠 금지 */
+  .reading-body {
+    @apply text-[16px] leading-[1.65] text-body-text;
+  }
+
+  /* 비활성 액션(미구현 — 이유는 인접 문구로 정직 표기) */
+  .btn[disabled],
+  .btn-primary[disabled] {
+    @apply cursor-not-allowed opacity-50;
+  }
+}
