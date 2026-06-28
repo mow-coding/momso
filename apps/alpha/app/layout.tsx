@@ -24,13 +24,13 @@ export const metadata: Metadata = {
     url: 'https://momso-alpha.vercel.app/',
     title: 'momso — 몸을 소중히 여기는 실천',
     description: OG_DESC,
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'momso — 몸을 소중히 여기는 실천' }],
+    images: [{ url: '/brand/banner.png', width: 1855, height: 188, alt: 'momso — 몸을 소중히 여기는 실천' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'momso — 몸을 소중히 여기는 실천',
     description: OG_DESC,
-    images: ['/og.png'],
+    images: ['/brand/banner.png'],
   },
 }
 
