@@ -23,3 +23,4 @@ momso가 쌓은 research — 리서치 보고서 모음. 표준 양식으로 정
 | `20260617_competitor_oko_movehee.md` | 경쟁사 OKO(movehee) 인텔 — 같은 카테고리, 더 얕은 버전. 위협은 진짜지만 같은 제품은 아니다 |
 | `20260617_competitor_oko_team_capability.md` | 무브히 / 탁구발전소24 / OKO — 팀 역량 평가: 시야는 플랫폼급이나 검증된 실행은 오프라인 가맹뿐 |
 | `20260618_oko_marketing_playbook.md` | OKO 마케팅·바이럴 문법 분석 — 같은 제품이라면 승부는 팀과 마케팅 DNA에서 갈린다 |
+| `20260620_momso_northstar_competitive_positioning.md` | 몸소 북극성 도출과 경쟁 포지셔닝 — 비전(안전·진실·지속)을 '검수 기록 재방문율' 한 지표로 번역; 앵커링 레인은 비어 있고, 신체 스펙을 빼면 직접 라이벌은 OKO로 선명해진다 |
